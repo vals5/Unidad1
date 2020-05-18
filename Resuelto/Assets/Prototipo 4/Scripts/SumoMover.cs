@@ -9,13 +9,10 @@ public class SumoMover : MonoBehaviour
 
     public float speed = 5;
 
-    public Vector2 move;
+    public Transform puntoFocalTransform = null;
 
     private void Update()
     {
-        move.x = Input.GetAxis("Horizontal");
-        move.y = Input.GetAxis("Vertical");
-
-        rb.AddForce(new Vector3(move.x, 0, move.y) * (speed * Time.deltaTime), ForceMode.Force);
+        rb.AddForce(puntoFocalTransform.forward * (Input.GetAxis("Vertical") * (speed * Time.deltaTime)));
     }
 }
